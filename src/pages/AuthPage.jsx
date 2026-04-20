@@ -34,11 +34,11 @@ export default function AuthPage() {
       } = await supabase.auth.getUser();
 
       if (user) {
-        const role = user?.user_metadata?.role;
+        const userRole = user?.user_metadata?.role;
 
-        if (role === 'customer') {
+        if (userRole === 'customer') {
           window.location.hash = '#/customer';
-        } else if (role === 'provider') {
+        } else if (userRole === 'provider') {
           window.location.hash = '#/provider';
         }
       }
@@ -145,11 +145,11 @@ export default function AuthPage() {
           data: { user },
         } = await supabase.auth.getUser();
 
-        const role = user?.user_metadata?.role;
+        const userRole = user?.user_metadata?.role;
 
-        if (role === 'customer') {
+        if (userRole === 'customer') {
           window.location.hash = '#/customer';
-        } else if (role === 'provider') {
+        } else if (userRole === 'provider') {
           window.location.hash = '#/provider';
         } else {
           setMessage('Giriş başarılı ama rol bulunamadı');
@@ -174,7 +174,7 @@ export default function AuthPage() {
       setResetLoading(true);
 
       const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
-        redirectTo: SITE_URL ? `${SITE_URL}/#/reset-password` : undefined,
+        redirectTo: SITE_URL ? `${SITE_URL}/#/auth` : undefined,
       });
 
       if (error) throw error;
@@ -623,5 +623,3 @@ export default function AuthPage() {
     </div>
   );
 }
-0
-pfffff
