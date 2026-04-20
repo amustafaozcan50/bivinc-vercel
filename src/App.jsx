@@ -4,7 +4,6 @@ import { supabase } from './lib/supabase';
 import AuthPage from './pages/AuthPage';
 import CustomerDashboard from './pages/CustomerDashboard';
 import ProviderDashboard from './pages/ProviderDashboard';
-import ResetPasswordPage from './pages/ResetPasswordPage';
 
 function getCurrentPath() {
   const hash = window.location.hash || '#/auth';
@@ -41,7 +40,7 @@ export default function App() {
       setUser(user || null);
 
       if (!window.location.hash) {
-        window.location.hash = user ? '#/auth' : '#/auth';
+        window.location.hash = '#/auth';
       }
 
       setBooting(false);
@@ -69,10 +68,6 @@ export default function App() {
         Yükleniyor...
       </div>
     );
-  }
-
-  if (path === '/reset-password') {
-    return <ResetPasswordPage />;
   }
 
   if (!user) {
